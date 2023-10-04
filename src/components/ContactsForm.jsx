@@ -15,14 +15,6 @@ export class ContactForm extends Component {
     event.preventDefault();
     const { name, number } = this.state;
 
-    const isDuplicateName = this.props.contacts.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase()
-    );
-
-    if (isDuplicateName) {
-      alert(`${name} is already in contacts`);
-      return;
-    }
     if (name === '') {
       alert('Enter your name');
       return;
@@ -30,6 +22,7 @@ export class ContactForm extends Component {
 
     const newContact = { id: nanoid(), name, number };
     this.props.onAddContact(newContact);
+
     this.setState({ name: '', number: '' });
   };
 
